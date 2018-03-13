@@ -17,6 +17,12 @@ make doc
 make thesis
 ```
 
+这个模版提供多种方法进行调试，包括latexmk和xelatex, 可以指定使用何种方法进行编译:  
+
+```
+make thesis METHOD=xelatex
+```
+
 ## Bugs
 
 因为作者各种事情烦身，只是小改了一个晚上，欢迎各位大佬为这个项目贡献代码。
