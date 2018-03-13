@@ -1616,7 +1616,7 @@
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}}
 \fancypagestyle{thu@plain}{%
-  \fancyhead{}
+	\fancyhead{暨南大学本科毕业设计(论文)}
   \fancyfoot[C]{\xiaowu\thepage}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}}
@@ -2407,30 +2407,7 @@
 \edate{\ifcase \month \or January\or February\or March\or April\or May%
        \or June\or July \or August\or September\or October\or November
        \or December\fi\unskip,\ \ \the\year}
-\newcommand{\thu@authtitle}{关于学位论文使用授权的说明}
-\newcommand{\thu@authorization}{%
-\ifthu@bachelor
-本人完全了解清华大学有关保留、使用学位论文的规定，即：学校有权保留学位
-论文的复印件，允许该论文被查阅和借阅；学校可以公布该论文的全部或部分内
-容，可以采用影印、缩印或其他复制手段保存该论文。
-\else
-本人完全了解清华大学有关保留、使用学位论文的规定，即：
 
-清华大学拥有在著作权法规定范围内学位论文的使用权，其中包括：（1）已获学位的研究生
-必须按学校规定提交学位论文，学校可以采用影印、缩印或其他复制手段保存研究生上交的
-学位论文；（2）为教学和科研目的，学校可以将公开的学位论文作为资料在图书馆、资料
-室等场所供校内师生阅读，或在校园网上供校内师生浏览部分内容\ifthu@master 。\else ；
-（3）根据《中华人民共和国学位条例暂行实施办法》，向国家图书馆报送可以公开的学位
-论文。\fi
-
-本人保证遵守上述规定。
-\fi}
-\newcommand{\thu@authorizationaddon}{%
-  \ifthu@bachelor(涉密的学位论文在解密后应遵守此规定)\else （保密的论文在解密后应遵守此规定）\fi}
-\newcommand{\thu@authorsig}{\ifthu@bachelor 签\hskip1em名：\else 作者签名：\fi}
-\newcommand{\thu@teachersig}{导师签名：}
-\newcommand{\thu@frontdate}{%
-  日\ifthu@bachelor\hspace{1em}\else\hspace{2em}\fi 期：}
 \newcommand{\thu@ckeywords@title}{关键词：}
 %</cfg>
 %    \end{macrocode}
@@ -2710,35 +2687,16 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \myentry{授权页面}
-% \begin{macro}{\thu@authorization@mk}
-% \changes{v4.0}{2007/11/08}{研究生的授权部分调整了一下，不知道老师为什么总爱修改
-% 那些无关紧要的格式，郁闷。感谢 PMHT@newsmth 的认真比对。}
-% \changes{v4.4.2}{2008/06/07}{修改本科生的授权部分，按照 2008 年的新样例。}
-% 支持扫描文件替换。
-%    \begin{macrocode}
-\newcommand{\thu@authorization@mk}{%
-  \ifthu@bachelor\vspace*{0.2cm}\else\vspace*{0.42cm}\fi % shit code!
-  \begin{center}\erhao\heiti\thu@authtitle\end{center}
-  \ifthu@bachelor\vskip5pt\else\vskip40pt\sihao[2.03]\fi\par
-  \thu@authorization\par
-  \textbf{\thu@authorizationaddon}\par
-  \ifthu@bachelor\vskip0.7cm\else\vskip1.0cm\fi
-  \ifthu@bachelor
-    \indent\mbox{\thu@authorsig\thu@underline\relax%
-    \thu@teachersig\thu@underline\relax\thu@frontdate\thu@underline\relax}
-  \else
-    \begingroup
-      \parindent0pt\xiaosi
-      \hspace*{1.5cm}\thu@authorsig\thu@underline[7em]\relax\hfill%
-                     \thu@teachersig\thu@underline[7em]\relax\hspace*{1cm}\\[3pt]
-      \hspace*{1.5cm}\thu@frontdate\thu@underline[7em]\relax\hfill%
-                     \thu@frontdate\thu@underline[7em]\relax\hspace*{1cm}
-    \endgroup
-  \fi}
-%    \end{macrocode}
 % \end{macro}
 %
+
+\newcommand{\thu@declarename}{诚\hspace{1em}信\hspace{1em}声\hspace{1em}明}
+\newcommand{\thu@declaretext}{我声明，所呈交的毕业论文是本人在老师指导下进行的研究工作及取得的研究成果。
+据我查证，除了文中特别加以标注和致谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得其他教育机
+构的学位或证书而使用过的材料。我承诺，论文中的所有内容均真实、可信。}
+\newcommand{\thu@signature}{签\hspace{1em}名：}
+\newcommand{\thu@backdate}{日\hspace{1em}期：}
+
 % \begin{macro}{\makecover}
 % 生成封面总命令。
 % \changes{v2.1}{2006/02/29}{分成几个小模块来搞，不然这个 macro 太大了，看不过来。}
@@ -2756,7 +2714,7 @@
   \phantomsection
   \pdfbookmark[-1]{\thu@ctitle}{ctitle}
   \normalsize%
-  \begin{titlepage}
+\begin{titlepage}
 %    \end{macrocode}
 %
 % 论文封面第一页！
@@ -2764,47 +2722,34 @@
     \thu@first@titlepage
 %    \end{macrocode}
 %
-% \changes{v2.5}{2006/05/19}{本科论文评语位置调整。}
-% \changes{v3.0}{2007/05/12}{本科论文评语取消。}
-% \changes{v4.7}{2011/11/28}{硕士论文也需要英文封面。}
-%
 % 研究生论文需要增加英文封面
 %    \begin{macrocode}
     \ifthu@bachelor\relax\else
       \ifthu@postdoctor\relax\else
-        \cleardoublepage\thu@engcover
+        \thu@engcover
     \fi\fi
 %    \end{macrocode}
-%
-% 授权说明
-% \changes{v3.0}{2007/05/12}{本科论文授权图片扫描取消。}
-% \changes{v4.5.2}{2010/05/29}{本科封面和授权说明之间不要空白页。}
-% \changes{v4.6}{2011/05/29}{博士后报告无授权说明。}
-% \changes{v5.0.0}{2015/06/05}{使用 \pkg{pdfpages} 宏包支持本硕博论文授权说明扫描版(\#36)。}
 %    \begin{macrocode}
+  {
     \ifthu@postdoctor\relax\else%
-      \ifthu@bachelor\clearpage\else\cleardoublepage\fi%
       \IfNoValueTF{#1}{%
-        \ifthu@bachelor\thu@authorization@mk\else%
-          \begin{list}{}{%
-            \topsep\z@%
-            \listparindent\parindent%
-            \parsep\parskip%
-            \setlength{\leftmargin}{0.9mm}%
-            \setlength{\rightmargin}{0.9mm}}%
-          \item[]\thu@authorization@mk%
-          \end{list}%
-        \fi%
+        \thu@chapter*{\thu@declarename}
+        \par{\xiaosi\parindent2em\thu@declaretext}\vskip2cm
+        {\xiaosi\hfill\thu@signature\thu@underline[2.5cm]\relax%
+         \thu@backdate\thu@underline[2.5cm]\relax}%
       }{%
-        \includepdf{#1}%
+        \includepdf[pagecommand={\thispagestyle{thu@empty}%
+          \phantomsection\addcontentsline{toc}{chapter}{\thu@declarename}%
+        }]{#1}%
       }%
     \fi
-  \end{titlepage}
+  }
 %    \end{macrocode}
+
 %
-% \changes{v2.5}{2006/05/16}{综合论文训练在授权说明之后。}
-% \changes{v3.0}{2007/05/12}{本科综合论文训练在电子版中取消。}
-%
+\end{titlepage}
+% \end{macrocode}
+
 % 中英文摘要
 %    \begin{macrocode}
   \normalsize
@@ -2940,13 +2885,6 @@
 %    \begin{macrocode}
 %<*cfg>
 \newcommand{\thu@ackname}{致\hspace{1em}谢}
-\newcommand{\thu@declarename}{声\hspace{1em}明}
-\newcommand{\thu@declaretext}{本人郑重声明：所呈交的学位论文，是本人在导师指导下
-  ，独立进行研究工作所取得的成果。尽我所知，除文中已经注明引用的内容外，本学位论
-  文的研究成果不包含任何他人享有著作权的内容。对本论文所涉及的研究工作做出贡献的
-  其他个人和集体，均已在文中以明确方式标明。}
-\newcommand{\thu@signature}{签\hspace{1em}名：}
-\newcommand{\thu@backdate}{日\hspace{1em}期：}
 %</cfg>
 %    \end{macrocode}
 %
@@ -2972,22 +2910,6 @@
 % 声明部分
 % \changes{v3.0}{2007/05/12}{本科论文声明部分图片扫描取消。}
 % \changes{v5.0.0}{2015/06/05}{使用 pdfpages 宏包支持本硕博论文声明扫描版(\#36)。}
-%    \begin{macrocode}
-  {
-    \ifthu@postdoctor\relax\else%
-      \IfNoValueTF{#1}{%
-        \thu@chapter*{\thu@declarename}
-        \par{\xiaosi\parindent2em\thu@declaretext}\vskip2cm
-        {\xiaosi\hfill\thu@signature\thu@underline[2.5cm]\relax%
-         \thu@backdate\thu@underline[2.5cm]\relax}%
-      }{%
-        \includepdf[pagecommand={\thispagestyle{thu@empty}%
-          \phantomsection\addcontentsline{toc}{chapter}{\thu@declarename}%
-        }]{#1}%
-      }%
-    \fi
-  }
-%    \end{macrocode}
 % \end{environment}
 % \begin{environment}{ack}
 % 兼容旧版本保留 \env{ack}。
